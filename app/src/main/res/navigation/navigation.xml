@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/rootFragment">
+
+    <fragment
+        android:id="@+id/rootFragment"
+        android:name="me.monster.blogtest.fragment.RootFragment"
+        android:label="fragment_root"
+        tools:layout="@layout/fragment_root">
+        <action
+            android:id="@+id/action_rootFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="me.monster.blogtest.fragment.SettingsFragment"
+        android:label="SettingsFragment">
+        <argument
+            android:name="nickName"
+            android:defaultValue="未设置"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/deepLinkFragment"
+        android:name="me.monster.blogtest.fragment.DeepLinkFragment"
+        android:label="fragment_deep"
+        tools:layout="@layout/fragment_deep" >
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="www.example.com/{myarg}" />
+    </fragment>
+</navigation>
