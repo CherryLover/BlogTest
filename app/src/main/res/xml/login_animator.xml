@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/a_login_end"
+        app:constraintSetStart="@id/a_login_start"
+        app:duration="1000">
+        <OnClick
+            app:clickAction="toggle"
+            app:targetId="@id/tv_action_login" />
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/a_login_start">
+        <Constraint android:id="@+id/tv_action_login">
+            <CustomAttribute
+                app:attributeName="textColor"
+                app:customColorValue="#FFFFFF" />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/a_login_end">
+        <Constraint android:id="@+id/tv_action_login">
+            <CustomAttribute
+                app:attributeName="textColor"
+                app:customColorValue="@color/colorAccent" />
+            <Layout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="@+id/et_account"
+                app:layout_constraintStart_toStartOf="@+id/et_account"
+                app:layout_constraintTop_toBottomOf="@id/et_passwd" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/pb_login_progress"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="14dp"
+            android:alpha="1"
+            app:layout_constraintEnd_toEndOf="@+id/et_account"
+            app:layout_constraintStart_toStartOf="@+id/et_account"
+            app:layout_constraintTop_toBottomOf="@id/et_passwd" />
+
+    </ConstraintSet>
+
+</MotionScene>
