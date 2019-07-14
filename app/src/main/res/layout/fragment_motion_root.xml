@@ -12,4 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_motion_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Swipe"
+        android:textAllCaps="false" />
 </LinearLayout>

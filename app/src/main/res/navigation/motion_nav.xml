@@ -11,10 +11,17 @@
         <action
             android:id="@+id/action_motionRootFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_motionRootFragment_to_swipeFragment"
+            app:destination="@id/swipeFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="me.monster.blogtest.motion.LoginFragment"
         android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/swipeFragment"
+        android:name="me.monster.blogtest.motion.SwipeFragment"
+        android:label="SwipeFragment" />
 </navigation>

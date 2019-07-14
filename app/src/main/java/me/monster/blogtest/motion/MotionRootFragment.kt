@@ -24,12 +24,17 @@ class MotionRootFragment : Fragment(), View.OnClickListener {
         if (id == R.id.btn_motion_login) {
             Navigation.findNavController(v)
                     .navigate(R.id.action_motionRootFragment_to_loginFragment)
+        } else if (id == R.id.btn_motion_swipe) {
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_motionRootFragment_to_swipeFragment)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_motion_root, container, false)
         rootView.findViewById<Button>(R.id.btn_motion_login)
+                .setOnClickListener(this)
+        rootView.findViewById<Button>(R.id.btn_motion_swipe)
                 .setOnClickListener(this)
         return rootView
     }
