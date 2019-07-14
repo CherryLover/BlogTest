@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/v_swipe_end"
+        app:constraintSetStart="@id/v_swipe_start"
+        app:duration="1000">
+        <OnSwipe
+            app:dragDirection="dragRight"
+            app:touchAnchorId="@id/v_swipe"
+            app:touchAnchorSide="bottom" />
+
+        <KeyFrameSet>
+            <KeyPosition
+                app:curveFit="linear"
+                app:framePosition="50"
+                app:keyPositionType="parentRelative"
+                app:motionTarget="@+id/v_swipe"
+                app:percentY="0.3" />
+
+            <KeyAttribute
+                android:alpha="0"
+                app:curveFit="linear"
+                app:framePosition="50"
+                app:motionTarget="@+id/v_swipe" />
+
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/v_swipe_start">
+        <Constraint android:id="@+id/v_swipe">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@color/colorAccent" />
+            <Transform
+                android:scaleX="1.0"
+                android:scaleY="1.0" />
+            <Layout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/v_swipe_end">
+        <Constraint android:id="@+id/v_swipe">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@color/colorPrimary" />
+            <Transform
+                android:scaleX="3.0"
+                android:scaleY="3.0" />
+            <Layout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>
