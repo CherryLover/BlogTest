@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_rootFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action android:id="@+id/action_rootFragment_to_detailFragment" app:destination="@id/detailFragment"/>
 
     </fragment>
     <fragment
@@ -34,4 +35,6 @@
             android:id="@+id/deepLink"
             app:uri="www.example.com/{myarg}" />
     </fragment>
+    <fragment android:id="@+id/detailFragment" android:name="me.monster.blogtest.fragment.DetailFragment"
+              android:label="fragment_detail" tools:layout="@layout/fragment_detail"/>
 </navigation>

@@ -7,10 +7,10 @@
     tools:context=".fragment.RootFragment">
 
     <Button
-        android:id="@+id/btn_to_setting"
+        android:id="@+id/btn_to_detail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="去 Settings 页面"
+        android:text="进入内容详情页面"
         android:textAllCaps="false" />
 
     <TextView
