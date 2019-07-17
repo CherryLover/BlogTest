@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#EEEEEE"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:src="@mipmap/avatar_1"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="叫我怪兽好了"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/test_comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_nick_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_nick_name" />
+
+    <TextView
+        android:id="@+id/iv_good"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:drawableStart="@drawable/ic_good"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="1231"
+        app:layout_constraintEnd_toStartOf="@id/iv_to_comment"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/tv_nick_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_comment" />
+
+    <TextView
+        android:id="@+id/iv_to_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:drawableStart="@drawable/ic_message_red_a100_24dp"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:text="32"
+        app:layout_constraintEnd_toStartOf="@id/iv_book"
+        app:layout_constraintStart_toEndOf="@id/iv_good"
+        app:layout_constraintTop_toTopOf="@id/iv_good" />
+
+    <TextView
+        android:id="@+id/iv_book"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        android:drawableStart="@drawable/ic_stars_orange_a700_24dp"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:text="999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_to_comment"
+        app:layout_constraintTop_toTopOf="@id/iv_good" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
