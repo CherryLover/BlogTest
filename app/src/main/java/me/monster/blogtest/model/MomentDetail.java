@@ -1,44 +1,33 @@
 package me.monster.blogtest.model;
 
-import androidx.databinding.ObservableField;
-import androidx.databinding.ObservableInt;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 /**
  * @description
  * @author: Created jiangjiwei in 2019-07-17 22:29
  */
-public class MomentDetail {
-    //    ObservableField<String> content = new ObservableField<>();
-//
-//    public ObservableField<String> getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String str) {
-//        content.set(str);
-//    }
-    private ObservableField<String> content = new ObservableField<>();
-    private ObservableInt good = new ObservableInt();
+public class MomentDetail extends BaseObservable {
+    private String moment;
+    private int goodCount;
 
-
-
-    public ObservableInt getGood() {
-        return good;
+    @Bindable
+    public String getMoment() {
+        return moment == null ? "" : moment;
     }
 
-    public void updateGood() {
-        good.set(good.get() + 1);
+    @Bindable
+    public int getGoodCount() {
+        return goodCount;
     }
 
-    public ObservableField<String> getContent() {
-        return content;
+    public void setContent(String msg) {
+        this.moment = msg;
+        notifyChange();
     }
 
-    public void setContent(String content) {
-        this.content.set(content);
-    }
-
-    public String getContentValue() {
-        return content.get();
+    public void updateGood(int count) {
+        goodCount = count;
+        notifyChange();
     }
 }

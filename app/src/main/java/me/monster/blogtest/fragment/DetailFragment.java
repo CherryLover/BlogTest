@@ -33,7 +33,7 @@ public class DetailFragment extends Fragment {
             switch (msg.what) {
                 case SHOW_CONTENT:
                     mMomentDetail.setContent("Test in Observable owner");
-                    mMomentDetail.updateGood();
+                    mMomentDetail.updateGood(1);
 //                    mMomentObs.setContent("Test in Observable Data Class");
                     break;
                 default:
@@ -48,9 +48,8 @@ public class DetailFragment extends Fragment {
         FragmentDetailBinding viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
         View root = viewDataBinding.getRoot();
         mMomentDetail = new MomentDetail();
-        mMomentDetail.setContent("使用 DataBinding");
-        viewDataBinding.setDetail(mMomentDetail);
 
+        viewDataBinding.setDetailObs(mMomentDetail);
         viewDataBinding.setLifecycleOwner(DetailFragment.this);
 
         mHandler.sendEmptyMessageDelayed(SHOW_CONTENT, 3 * 1000);

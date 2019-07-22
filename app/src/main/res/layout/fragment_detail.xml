@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="detail"
+            name="detailObs"
             type="me.monster.blogtest.model.MomentDetail" />
     </data>
 
@@ -54,7 +54,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:lineSpacingMultiplier="1.2"
-            android:text="@{detail.content}"
+            android:text="@{detailObs.moment}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_nick_name"
             app:layout_constraintTop_toBottomOf="@id/tv_nick_name"
@@ -68,7 +68,7 @@
             android:drawablePadding="8dp"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@{String.valueOf(detail.good)}"
+            android:text="@{String.valueOf(detailObs.goodCount)}"
             app:layout_constraintEnd_toStartOf="@id/iv_to_comment"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/tv_nick_name"
