@@ -6,16 +6,14 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-
+import androidx.lifecycle.ViewModelProviders;
 import me.monster.blogtest.R;
 import me.monster.blogtest.databinding.FragmentDetailBinding;
-import me.monster.blogtest.model.MomentDetail;
-import me.monster.blogtest.model.MomentObs;
+import me.monster.blogtest.model.MomentViewModel;
 
 /**
  * @description
@@ -24,17 +22,15 @@ import me.monster.blogtest.model.MomentObs;
 public class DetailFragment extends Fragment {
     public static final int SHOW_CONTENT = 589;
     private static final String TAG = "DetailFragment";
-    private MomentDetail mMomentDetail;
-    private MomentObs mMomentObs;
+    private MomentViewModel momentViewModel;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case SHOW_CONTENT:
-                    mMomentDetail.setContent("Test in Observable owner");
-                    mMomentDetail.updateGood(1);
-//                    mMomentObs.setContent("Test in Observable Data Class");
+                    momentViewModel.setGoodValue(msg.what);
+                    momentViewModel.setNameValue(getString(R.string.content));
                     break;
                 default:
             }
@@ -47,9 +43,9 @@ public class DetailFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         FragmentDetailBinding viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
         View root = viewDataBinding.getRoot();
-        mMomentDetail = new MomentDetail();
-
-        viewDataBinding.setDetailObs(mMomentDetail);
+        momentViewModel = ViewModelProviders.of(this)
+                .get(MomentViewModel.class);
+        viewDataBinding.setViewModel(momentViewModel);
         viewDataBinding.setLifecycleOwner(DetailFragment.this);
 
         mHandler.sendEmptyMessageDelayed(SHOW_CONTENT, 3 * 1000);

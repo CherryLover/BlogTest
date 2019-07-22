@@ -4,4 +4,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test_comment">过渡动画，顾名思义就是在状态之间进行过渡的动画效果，防止页面内 View 出现瞬间移动的效果。而 MotionLayout 的重点其实就是状态。开发者只需要定义好对应状态下 View 的相对位置，以及相关属性，其后 MotionLayout 便会自动为其增加动的效果。</string>
+    <string name="content" >“那一天我二十一岁，在我一生的黄金时代。我有好多奢望。我想爱，想吃，还想在一瞬间变成天上半明半暗的云。后来我才知道，生活就是个缓慢受锤的过程…可是我过二十一岁生日时没有预见到这一点。我觉得自己会永远生猛下去，什么也锤不了我。”</string>
 </resources>
