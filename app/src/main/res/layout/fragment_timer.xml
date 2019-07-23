@@ -7,6 +7,7 @@
     tools:context=".tab.TimerFragment">
 
     <TextView
+        android:id="@+id/tv_timer_down"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
