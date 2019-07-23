@@ -69,6 +69,7 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="@{String.valueOf(viewModel.good)}"
+            android:onClick="@{() -> viewModel.upGood()}"
             app:layout_constraintEnd_toStartOf="@id/iv_to_comment"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/tv_nick_name"
