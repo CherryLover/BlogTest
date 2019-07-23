@@ -26,6 +26,7 @@
 
         <ImageView
             android:id="@+id/iv_avatar"
+            imageRes="@{viewModel.avatar}"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -67,9 +68,9 @@
             android:drawableStart="@drawable/ic_good"
             android:drawablePadding="8dp"
             android:gravity="center"
+            android:onClick="@{() -> viewModel.upGood()}"
             android:padding="8dp"
             android:text="@{String.valueOf(viewModel.good)}"
-            android:onClick="@{() -> viewModel.upGood()}"
             app:layout_constraintEnd_toStartOf="@id/iv_to_comment"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/tv_nick_name"
@@ -82,8 +83,8 @@
             android:drawableStart="@drawable/ic_message_red_a100_24dp"
             android:drawablePadding="8dp"
             android:padding="8dp"
-            android:visibility="gone"
             android:text="32"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@id/iv_book"
             app:layout_constraintStart_toEndOf="@id/iv_good"
             app:layout_constraintTop_toTopOf="@id/iv_good" />
@@ -92,12 +93,12 @@
             android:id="@+id/iv_book"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:visibility="gone"
             android:layout_marginEnd="15dp"
             android:drawableStart="@drawable/ic_stars_orange_a700_24dp"
             android:drawablePadding="8dp"
             android:padding="8dp"
             android:text="999"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_to_comment"
             app:layout_constraintTop_toTopOf="@id/iv_good" />
