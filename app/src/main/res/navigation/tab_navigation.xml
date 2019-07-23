@@ -5,17 +5,17 @@
     android:id="@+id/tab_navigation"
     app:startDestination="@id/feedFragment">
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/feedFragment"
         android:name="me.monster.blogtest.tab.FeedFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed" />
-    <fragment
+    <keep_state_fragment
         android:id="@+id/timerFragment"
         android:name="me.monster.blogtest.tab.TimerFragment"
         android:label="fragment_timer"
         tools:layout="@layout/fragment_timer" />
-    <fragment
+    <keep_state_fragment
         android:id="@+id/mineFragment"
         android:name="me.monster.blogtest.tab.MineFragment"
         android:label="fragment_mine"
