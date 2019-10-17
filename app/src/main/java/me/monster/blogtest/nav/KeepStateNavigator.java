@@ -70,11 +70,6 @@ public class KeepStateNavigator extends FragmentNavigator {
         if (mBackStack.isEmpty()) {
             return false;
         }
-        if (manager.isStateSaved()) {
-            Log.i(TAG, "Ignoring popBackStack() call: FragmentManager has already"
-                    + " saved its state");
-            return false;
-        }
 //        if (manager.getBackStackEntryCount() > 0) {
 //            manager.popBackStack(
 //                    generateBackStackName(mBackStack.size(), mBackStack.peekLast()),
