@@ -40,7 +40,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(btnToRoot)
-                        .popBackStack();
+                        .navigateUp();
             }
         });
     }

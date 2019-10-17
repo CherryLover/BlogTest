@@ -5,7 +5,7 @@
     android:id="@+id/navigation"
     app:startDestination="@id/rootFragment">
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/rootFragment"
         android:name="me.monster.blogtest.fragment.RootFragment"
         android:label="fragment_root"
@@ -14,8 +14,8 @@
             android:id="@+id/action_rootFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
 
-    </fragment>
-    <fragment
+    </keep_state_fragment>
+    <keep_state_fragment
         android:id="@+id/settingsFragment"
         android:name="me.monster.blogtest.fragment.SettingsFragment"
         android:label="SettingsFragment">
@@ -24,8 +24,8 @@
             android:defaultValue="未设置"
             app:argType="string"
             app:nullable="true" />
-    </fragment>
-    <fragment
+    </keep_state_fragment>
+    <keep_state_fragment
         android:id="@+id/deepLinkFragment"
         android:name="me.monster.blogtest.fragment.DeepLinkFragment"
         android:label="fragment_deep"
@@ -33,5 +33,5 @@
         <deepLink
             android:id="@+id/deepLink"
             app:uri="www.example.com/{myarg}" />
-    </fragment>
+    </keep_state_fragment>
 </navigation>
