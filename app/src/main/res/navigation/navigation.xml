@@ -24,6 +24,9 @@
             android:defaultValue="未设置"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_settingsFragment_to_actionFragment"
+            app:destination="@id/actionFragment" />
     </keep_state_fragment>
     <keep_state_fragment
         android:id="@+id/deepLinkFragment"
@@ -34,4 +37,8 @@
             android:id="@+id/deepLink"
             app:uri="www.example.com/{myarg}" />
     </keep_state_fragment>
+    <keep_state_fragment
+        android:id="@+id/actionFragment"
+        android:name="me.monster.blogtest.fragment.ActionFragment"
+        android:label="ActionFragment" />
 </navigation>

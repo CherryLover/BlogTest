@@ -20,6 +20,13 @@
         android:text="去 Action 页面"
         android:textAllCaps="false" />
 
+    <CheckBox
+        android:id="@+id/cb_to_activity"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="true: 去 Activity；false: 去 Fragment"
+        android:textAllCaps="false" />
+
     <TextView
         android:id="@+id/tv_nick_name"
         android:layout_width="match_parent"

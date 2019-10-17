@@ -11,6 +11,14 @@
         android:text="关闭 Setting Fragment"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn_action_back"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="返回"
+        android:textAllCaps="false" />
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

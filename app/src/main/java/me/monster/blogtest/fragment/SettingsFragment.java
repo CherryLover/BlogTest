@@ -7,18 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.Navigator;
+import androidx.navigation.NavigatorProvider;
 
 import com.jeremyliao.liveeventbus.LiveEventBus;
 
 import me.monster.blogtest.ActionActivity;
 import me.monster.blogtest.R;
+import me.monster.blogtest.nav.KeepStateNavigator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +36,7 @@ public class SettingsFragment extends Fragment {
 
     Button btnToRoot;
     Button btnToAction;
+    CheckBox cbToActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,10 +55,16 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnToAction = view.findViewById(R.id.btn_to_action);
+        cbToActivity = view.findViewById(R.id.cb_to_activity);
         btnToAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActionActivity.start(v.getContext());
+                if (cbToActivity.isChecked()) {
+                    ActionActivity.start(v.getContext());
+                } else {
+                    NavController navController = Navigation.findNavController(v);
+                            navController.navigate(R.id.action_settingsFragment_to_actionFragment);
+                }
             }
         });
     }
@@ -65,8 +77,13 @@ public class SettingsFragment extends Fragment {
                     @Override
                     public void onChanged(Boolean flag) {
                         if (flag) {
-                            Navigation.findNavController(btnToRoot)
-                                    .navigateUp();
+                            NavController navController = Navigation.findNavController(btnToRoot);
+                            NavigatorProvider navigatorProvider = navController.getNavigatorProvider();
+                            Navigator<?> navigator = navigatorProvider.getNavigator("keep_state_fragment");
+                            if (navigator instanceof KeepStateNavigator) {
+                                ((KeepStateNavigator) navigator).closeMiddle(R.id.settingsFragment);
+                            }
+//                                    .navigateUp();
                         } else {
                             Log.e(TAG, "onMessageEvent: receive message but not do anything");
                         }
