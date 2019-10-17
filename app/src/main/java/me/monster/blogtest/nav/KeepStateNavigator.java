@@ -76,6 +76,35 @@ public class KeepStateNavigator extends FragmentNavigator {
 //                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
 //        } // else, we're on the first Fragment, so there's nothing to pop from FragmentManager
         String removeTag = mBackStack.removeLast();
+        return doNavigate(removeTag);
+    }
+
+    /**
+     * 使用场景：A 打开 B, B 打开 C，C 直接或是间接（通过 事件总线传递事件 然后由具体的业务进行操作）对 B 进行关闭。然后从 C 直接返回至 A。
+     *
+     * @param destId 是在 Navigation 节点中 keep_state_fragment 中的 id 值，不能是 action 的 id！！！
+     * @return  true 移除成功，false 移除失败
+     */
+    public boolean closeMiddle(int destId) {
+        String removeTag = String.valueOf(destId);
+        for (String s : mBackStack) {
+            Log.e(TAG, "closeMiddle: " + s);
+        }
+        boolean remove = mBackStack.remove(removeTag);
+        if (remove) {
+            return false;
+        }
+        Log.e(TAG, "closeMiddle: to close " + destId);
+        return doNavigate(removeTag);
+    }
+
+    /**
+     * 移除 Fragment 并把当前栈顶的 Fragment 显示出来。
+     *
+     * @param removeTag 待移除 Fragment tag
+     * @return true 移除成功，false 移除失败
+     */
+    private boolean doNavigate(String removeTag) {
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment removeFrag = manager.findFragmentByTag(removeTag);
         if (removeFrag != null) {
@@ -89,7 +118,13 @@ public class KeepStateNavigator extends FragmentNavigator {
             transaction.show(showFrag);
             transaction.setPrimaryNavigationFragment(showFrag);
             transaction.setReorderingAllowed(true);
-            transaction.commitNow();
+            boolean stateSaved = manager.isStateSaved();
+            Log.d(TAG, "popBackStack: 当前是否在进行状态保存" + stateSaved);
+            if (stateSaved) {
+                transaction.commitNowAllowingStateLoss();
+            } else {
+                transaction.commitNow();
+            }
         } else {
             return false;
         }
