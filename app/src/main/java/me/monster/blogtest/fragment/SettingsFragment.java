@@ -2,6 +2,7 @@ package me.monster.blogtest.fragment;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import me.monster.blogtest.R;
 
 /**
@@ -19,6 +24,8 @@ import me.monster.blogtest.R;
  * @author jiangjiwei
  */
 public class SettingsFragment extends Fragment {
+
+    private static final String TAG = "SettingsFragment";
 
     Button btnToRoot;
 
@@ -35,6 +42,22 @@ public class SettingsFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(boolean flag) {
+        if (flag) {
+            Navigation.findNavController(btnToRoot)
+                    .navigateUp();
+        } else {
+            Log.e(TAG, "onMessageEvent: receive message but not do anything");
+        }
+    }
+
     private void goBack() {
         btnToRoot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,4 +68,9 @@ public class SettingsFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 }
