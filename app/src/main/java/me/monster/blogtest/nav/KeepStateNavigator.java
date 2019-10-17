@@ -15,6 +15,7 @@ import androidx.navigation.Navigator;
 import androidx.navigation.fragment.FragmentNavigator;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 
 /**
  * @description
@@ -87,15 +88,18 @@ public class KeepStateNavigator extends FragmentNavigator {
      */
     public boolean closeMiddle(int destId) {
         String removeTag = String.valueOf(destId);
+        StringBuilder sb = new StringBuilder("All stack is : [ ");
         for (String s : mBackStack) {
-            Log.e(TAG, "closeMiddle: " + s);
+            sb.append(s).append(" ");
         }
+        sb.append("]").append(". Waiting for close is ").append(removeTag);
+        Log.i(TAG, sb.toString());
         boolean remove = mBackStack.remove(removeTag);
         if (remove) {
+            return doNavigate(removeTag);
+        } else {
             return false;
         }
-        Log.e(TAG, "closeMiddle: to close " + destId);
-        return doNavigate(removeTag);
     }
 
     /**
