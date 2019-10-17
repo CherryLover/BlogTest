@@ -13,6 +13,13 @@
         android:text="去 Root 页面"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn_to_action"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="去 Action 页面"
+        android:textAllCaps="false" />
+
     <TextView
         android:id="@+id/tv_nick_name"
         android:layout_width="match_parent"

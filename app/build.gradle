@@ -40,4 +40,5 @@ dependencies {
     implementation 'androidx.fragment:fragment:1.1.0-alpha01'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.jeremyliao:live-event-bus-x:1.5.3'
 }

@@ -9,13 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 
+import me.monster.blogtest.ActionActivity;
 import me.monster.blogtest.R;
 
 /**
@@ -28,6 +30,7 @@ public class SettingsFragment extends Fragment {
     private static final String TAG = "SettingsFragment";
 
     Button btnToRoot;
+    Button btnToAction;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,19 +46,32 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        btnToAction = view.findViewById(R.id.btn_to_action);
+        btnToAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionActivity.start(v.getContext());
+            }
+        });
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(boolean flag) {
-        if (flag) {
-            Navigation.findNavController(btnToRoot)
-                    .navigateUp();
-        } else {
-            Log.e(TAG, "onMessageEvent: receive message but not do anything");
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        LiveEventBus.get("close", Boolean.class)
+                .observe(this, new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean flag) {
+                        if (flag) {
+                            Navigation.findNavController(btnToRoot)
+                                    .navigateUp();
+                        } else {
+                            Log.e(TAG, "onMessageEvent: receive message but not do anything");
+                        }
+                    }
+                });
     }
 
     private void goBack() {
@@ -68,9 +84,4 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
 }

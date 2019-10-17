@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_action_closeBefore"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="关闭 Setting Fragment"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:text="当前页面是从 SettingFragment 跳转过来的。"
+        android:textSize="20sp" />
+
+</LinearLayout>
