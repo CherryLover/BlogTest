@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_diff_list.*
+import java.util.*
 
 class DiffListActivity : AppCompatActivity() {
 
     private val numberList = mutableListOf<SimpleText>()
-    private val simpleAdapter = SimpleAdapter(numberList)
+    private val simpleListAdapter = SimpleListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +30,12 @@ class DiffListActivity : AppCompatActivity() {
         }
 
         rv_main_diff.also {
-            it.adapter = simpleAdapter
+            it.adapter = simpleListAdapter
             it.layoutManager = LinearLayoutManager(this)
             it.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         }
         prepareList()
+        simpleListAdapter.submitList(numberList)
     }
 
     /**
@@ -44,7 +46,7 @@ class DiffListActivity : AppCompatActivity() {
             return@MutableList numberList[it]
         }
         tmpList[tmpList.size -2] = SimpleText("New Edit To")
-        updateDiff(tmpList)
+        simpleListAdapter.submitList(tmpList)
     }
 
     /**
@@ -55,9 +57,11 @@ class DiffListActivity : AppCompatActivity() {
             return@MutableList numberList[it]
         }
         for (i in 0 until 20) {
-            tmpList.add(0, SimpleText(("Add Item $i")))
+            val element = SimpleText(("Add Item $i"))
+            tmpList.add(0, element)
+            numberList.add(0, element)
         }
-        updateDiff(tmpList)
+        simpleListAdapter.submitList(tmpList)
     }
 
     /**
@@ -65,10 +69,10 @@ class DiffListActivity : AppCompatActivity() {
      */
     private fun minus() {
         if (numberList.size >= 10) {
-            val tmpList = MutableList(10) {
+            val tmpList = MutableList(numberList.size) {
                 return@MutableList numberList[it]
             }
-            updateDiff(tmpList.subList(0, 10))
+            simpleListAdapter.submitList(tmpList.subList(0, 10))
         }
     }
 
@@ -78,31 +82,6 @@ class DiffListActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateDiff(tmpList: List<SimpleText>) {
-        val diffResult = DiffUtil.calculateDiff(DiffCallback(numberList, tmpList))
-        numberList.clear()
-        numberList.addAll(tmpList)
-        diffResult.dispatchUpdatesTo(simpleAdapter)
-    }
-
     data class SimpleText(var title: String)
 
-    class DiffCallback(private val oldList: List<SimpleText>, private val newList: List<SimpleText>) : DiffUtil.Callback() {
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition] === newList[newItemPosition]
-        }
-
-        override fun getOldListSize(): Int {
-            return oldList.size
-        }
-
-        override fun getNewListSize(): Int {
-            return newList.size
-        }
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].title.hashCode() == newList[newItemPosition].title.hashCode()
-        }
-    }
 }
