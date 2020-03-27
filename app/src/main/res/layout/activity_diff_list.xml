@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEdit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="改列表中倒数第二个" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="加 10 个" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMinus"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="减 10 个" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main_diff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
