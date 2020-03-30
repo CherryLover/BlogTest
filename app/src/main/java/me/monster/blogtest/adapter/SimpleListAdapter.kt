@@ -1,5 +1,6 @@
-package me.monster.blogtest
+package me.monster.blogtest.adapter
 
+import android.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import me.monster.blogtest.DiffListActivity
 
 /**
  * @description
@@ -23,10 +25,16 @@ class SimpleDiffItemCallback : DiffUtil.ItemCallback<DiffListActivity.SimpleText
     }
 }
 
-class SimpleListAdapter : ListAdapter<DiffListActivity.SimpleText, SimpleListViewHolder>(SimpleDiffItemCallback()) {
+class SimpleListAdapter : ListAdapter<DiffListActivity.SimpleText, SimpleListViewHolder>(
+    SimpleDiffItemCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleListViewHolder {
-        return SimpleListViewHolder(LayoutInflater.from(parent.context).inflate(android.R.layout.simple_list_item_1, parent,false))
+        return SimpleListViewHolder(
+            LayoutInflater.from(
+                parent.context
+            ).inflate(R.layout.simple_list_item_1, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: SimpleListViewHolder, position: Int) {

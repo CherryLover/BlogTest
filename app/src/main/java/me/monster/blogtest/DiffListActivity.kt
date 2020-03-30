@@ -2,11 +2,10 @@ package me.monster.blogtest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_diff_list.*
-import java.util.*
+import me.monster.blogtest.adapter.SimpleListAdapter
 
 class DiffListActivity : AppCompatActivity() {
 
