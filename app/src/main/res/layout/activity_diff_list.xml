@@ -6,23 +6,48 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEdit"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="改列表中倒数第二个" />
+        android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="加 10 个" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEdit"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="改倒数第二个" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnMinus"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="加 10 个" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMinus"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="减 10 个" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="减 10 个" />
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddImg"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="加一个图片" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main_diff"
