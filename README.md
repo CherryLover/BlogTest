@@ -9,6 +9,6 @@
 | motionLayout | MotionLayout 相关代码                                        | [用 MotionLayout 来做过渡动画](https://jiangjiwei.site/post/yong-motionlayout-lai-zuo-guo-du-dong-hua/) |
 | dataBinding  | DataBinding 相关代码                                         | [看一看 DataBinding](https://jiangjiwei.site/post/kan-yi-kan-databinding/) |
 | closeBefore  | Navigation 对于 Fragment 切换的相关代码，父 branch 为：master | - [Navigation 之 Fragment 切换](https://jiangjiwei.site/post/navigation-zhi-fragment-qie-huan/) |
-| diff         | DiffUtil 和 ListAdapter 相关代码                             | [从 notifyDataSetChanged 到 Diff]([https://github.com/CherryLover/BlogTest/blob/diff/%E4%BB%8E%20notifyDataSetChanged%20%E5%88%B0%20Diff.md](https://github.com/CherryLover/BlogTest/blob/diff/从 notifyDataSetChanged 到 Diff.md)) |​
+| diff         | DiffUtil 和 ListAdapter 相关代码                             | [从 notifyDataSetChanged 到 Diff](https://github.com/CherryLover/BlogTest/blob/diff/%E4%BB%8E%20notifyDataSetChanged%20%E5%88%B0%20Diff.md]) |​
 
 
