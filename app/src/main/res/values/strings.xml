@@ -3,4 +3,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="status_navigation_visibility">
+        <item>SYSTEM_UI_FLAG_VISIBLE</item>
+        <item>SYSTEM_UI_FLAG_LOW_PROFILE</item>
+        <item>SYSTEM_UI_FLAG_HIDE_NAVIGATION</item>
+        <item>SYSTEM_UI_FLAG_FULLSCREEN</item>
+        <item>SYSTEM_UI_FLAG_LAYOUT_STABLE</item>
+        <item>SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION</item>
+        <item>SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</item>
+        <item>SYSTEM_UI_FLAG_IMMERSIVE</item>
+        <item>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</item>
+        <item>SYSTEM_UI_FLAG_LIGHT_STATUS_BAR</item>
+        <item>SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR</item>
+    </string-array>
 </resources>

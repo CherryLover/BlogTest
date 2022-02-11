@@ -125,7 +125,45 @@
             android:textAllCaps="false" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnLightDarkIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="黑白字符切换" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可见性调整" />
+
+            <Spinner
+                android:id="@+id/spSystemBarVisibility"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:entries="@array/status_navigation_visibility" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnApplyVisibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应用" />
+    </LinearLayout>
+
     <TextView
+        android:id="@+id/tvHint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
