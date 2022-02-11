@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#00FFAA"
+    android:fitsSystemWindows="true"
     tools:context=".fragment.RootFragment">
 
     <Button
@@ -12,6 +14,116 @@
         android:layout_height="48dp"
         android:text="去 Settings 页面"
         android:textAllCaps="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_top_gradient"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvStatusAlpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="状态栏透明度：0" />
+
+        <SeekBar
+            android:id="@+id/sbStatusAlpha"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:max="255"
+            android:min="0"
+            android:progress="0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvNavigatorAlpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="导航栏透明度：0" />
+
+        <SeekBar
+            android:id="@+id/sbNavigatorAlpha"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:max="255"
+            android:min="0"
+            android:progress="0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnStatusBarColor"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="状态栏颜色"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnStatusBarColorReset"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="重置"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnStatusBarUseHeight"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="屏幕区域延伸至状态栏"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnStatusBarUseHeightReset"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="重置"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnNavigatorTranslate"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="透明导航栏"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnNavigatorReset"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="重置"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
