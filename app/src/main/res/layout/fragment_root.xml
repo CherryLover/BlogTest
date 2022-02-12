@@ -89,15 +89,15 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btnStatusBarUseHeight"
+            android:id="@+id/btnNavigatorColor"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="屏幕区域延伸至状态栏"
+            android:text="导航栏颜色"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnStatusBarUseHeightReset"
+            android:id="@+id/btnNavigatorReset"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="重置"
@@ -109,15 +109,15 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btnNavigatorTranslate"
+            android:id="@+id/btnStatusBarUseHeight"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="透明导航栏"
+            android:text="屏幕区域延伸至状态栏"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btnNavigatorReset"
+            android:id="@+id/btnStatusBarUseHeightReset"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="重置"

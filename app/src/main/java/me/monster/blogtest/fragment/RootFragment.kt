@@ -34,7 +34,7 @@ class RootFragment : Fragment() {
     private var normalNavigatorBgColor = 0
     private var normalStatusBgColor = 0
 
-    private val statusBarColor = listOf(Color.BLACK, Color.BLUE, Color.CYAN, Color.DKGRAY)
+    private val backupColors = listOf(Color.BLACK, Color.BLUE, Color.CYAN, Color.DKGRAY)
 
     private val visibilityList by lazy { resources.getStringArray(R.array.status_navigation_visibility) }
     private val visibilityMap = mapOf(
@@ -94,9 +94,9 @@ class RootFragment : Fragment() {
                 .navigate(action)
         }
         mBinding.btnStatusBarColor.setOnClickListener {
-            var newColor = statusBarColor.random()
+            var newColor = backupColors.random()
             while (window.statusBarColor == newColor) {
-                newColor = statusBarColor.random()
+                newColor = backupColors.random()
             }
             window.statusBarColor = newColor
         }
@@ -126,9 +126,12 @@ class RootFragment : Fragment() {
             }
         }
 
-        mBinding.btnNavigatorTranslate.setOnClickListener {
-            Log.d(TAG, "导航栏默认颜色 ${Integer.toHexString(normalNavigatorBgColor)}")
-            window.navigationBarColor = Color.TRANSPARENT
+        mBinding.btnNavigatorColor.setOnClickListener {
+            var newColor = backupColors.random()
+            while (window.navigationBarColor == newColor) {
+                newColor = backupColors.random()
+            }
+            window.navigationBarColor = newColor
         }
         mBinding.btnNavigatorReset.setOnClickListener {
             window.navigationBarColor = normalNavigatorBgColor
