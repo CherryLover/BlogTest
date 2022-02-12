@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#00FFAA"
-    android:fitsSystemWindows="true"
     tools:context=".fragment.RootFragment">
 
     <Button
@@ -160,6 +159,75 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="应用" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="--- WindowInsets ---" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="隐藏 SystemBar 的行为" />
+
+        <Spinner
+            android:id="@+id/spBehavior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/system_bar_behavior" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnInsetsHideSystem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="隐藏 SystemBar" />
+
+        <Button
+            android:id="@+id/btnInsetsShowSystem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="显示 SystemBar" />
+
+        <EditText
+            android:id="@+id/etInput"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnLightDarkIconInsets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="黑白字符切换" />
+
+        <ToggleButton
+            android:id="@+id/btnEdgeToEdge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOff="关闭 - 全屏沉浸式切换"
+            android:textOn="打开 - 全屏沉浸式切换" />
     </LinearLayout>
 
     <TextView

@@ -17,4 +17,10 @@
         <item>SYSTEM_UI_FLAG_LIGHT_STATUS_BAR</item>
         <item>SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR</item>
     </string-array>
+
+    <string-array name="system_bar_behavior">
+        <item>SHOW_BARS_BY_TOUCH</item>
+        <item>SHOW_BARS_BY_SWIPE</item>
+        <item>SHOW_TRANSIENT_BARS_BY_SWIPE</item>
+    </string-array>
 </resources>

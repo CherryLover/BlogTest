@@ -5,13 +5,12 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
+import android.widget.AdapterView
 import android.widget.SeekBar
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import me.monster.blogtest.R
@@ -31,16 +30,12 @@ class RootFragment : Fragment() {
     }
 
     private lateinit var mBinding: FragmentRootBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = FragmentRootBinding.inflate(inflater, container, false)
-        toSettings()
-        return mBinding.root
-    }
+
+    private var normalNavigatorBgColor = 0
+    private var normalStatusBgColor = 0
 
     private val statusBarColor = listOf(Color.BLACK, Color.BLUE, Color.CYAN, Color.DKGRAY)
 
-    private val normalNavigatorBgColor by lazy { window.navigationBarColor }
-    private val normalStatusBgColor by lazy { window.statusBarColor }
     private val visibilityList by lazy { resources.getStringArray(R.array.status_navigation_visibility) }
     private val visibilityMap = mapOf(
         "SYSTEM_UI_FLAG_VISIBLE" to View.SYSTEM_UI_FLAG_VISIBLE,
@@ -68,6 +63,27 @@ class RootFragment : Fragment() {
         "SYSTEM_UI_FLAG_LIGHT_STATUS_BAR" to "黑色样式的 StatusBar，用 SYSTEM_UI_FLAG_VISIBLE 恢复",
         "SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR" to "黑色样式的 NavigationBar，用 SYSTEM_UI_FLAG_VISIBLE 恢复"
     )
+    private val systemBehaviorList by lazy { resources.getStringArray(R.array.system_bar_behavior) }
+    private val systemBarBehaviorMap = mapOf(
+        "SHOW_BARS_BY_TOUCH" to WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_TOUCH,
+        "SHOW_BARS_BY_SWIPE" to WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE,
+        "SHOW_TRANSIENT_BARS_BY_SWIPE" to WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+    )
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mBinding = FragmentRootBinding.inflate(inflater, container, false)
+        normalStatusBgColor = window.statusBarColor
+        normalNavigatorBgColor = window.navigationBarColor
+
+        mBinding.root.postDelayed({
+            normalStatusBgColor = window.statusBarColor
+            normalNavigatorBgColor = window.navigationBarColor
+            Log.d(TAG, "delay StatusBar 默认颜色 ${Integer.toHexString(normalStatusBgColor)} NavigationBar 默认颜色 ${Integer.toHexString(normalNavigatorBgColor)}")
+        }, 1000)
+        toSettings()
+        windowInsetsArea()
+        return mBinding.root
+    }
 
     private fun toSettings() {
         Log.d(TAG, "StatusBar 默认颜色 ${Integer.toHexString(normalStatusBgColor)} NavigationBar 默认颜色 ${Integer.toHexString(normalNavigatorBgColor)}")
@@ -207,6 +223,102 @@ class RootFragment : Fragment() {
                 }
                 window.decorView.systemUiVisibility = result
                 mBinding.tvHint.text = visibilityMeanMap[s] ?: ""
+            }
+        }
+    }
+
+    /**
+     * WindowInsets 相关 API 演示
+     */
+    private fun windowInsetsArea() {
+        val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView)
+        Log.d(TAG, "windowInsetsController is null ${windowInsetsController == null}")
+        mBinding.spBehavior.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val behavior = systemBehaviorList[position]
+                systemBarBehaviorMap[behavior]?.let {
+                    windowInsetsController?.systemBarsBehavior = it
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+        mBinding.btnInsetsHideSystem.setOnClickListener {
+            windowInsetsController?.let { controller ->
+    //                controller.hide(WindowInsetsCompat.Type.statusBars())
+    //                controller.hide(WindowInsetsCompat.Type.statusBars())
+                // statusBars + statusBars = systemBars
+                controller.hide(WindowInsetsCompat.Type.systemBars())
+                controller.show(WindowInsetsCompat.Type.ime())
+                mBinding.etInput.requestFocus()
+            }
+        }
+        mBinding.btnInsetsShowSystem.setOnClickListener {
+            windowInsetsController?.let { controller ->
+    //                controller.show(WindowInsetsCompat.Type.statusBars())
+    //                controller.show(WindowInsetsCompat.Type.navigationBars())
+                // statusBars + statusBars = systemBars
+                controller.show(WindowInsetsCompat.Type.systemBars())
+
+                // 判断 window insets 是否可见性，及控制 ime 的展示
+                ViewCompat.getRootWindowInsets(window.decorView)?.let {
+                    val statusVisible = it.isVisible(WindowInsetsCompat.Type.statusBars())
+                    val navigationVisible = it.isVisible(WindowInsetsCompat.Type.navigationBars())
+                    val imeVisible = it.isVisible(WindowInsetsCompat.Type.ime())
+                    Log.d(TAG, "statusBar visible $statusVisible")
+                    Log.d(TAG, "navigationBar visible $navigationVisible")
+                    Log.d(TAG, "ime visible $imeVisible")
+
+                    controller.hide(WindowInsetsCompat.Type.ime())
+                    mBinding.etInput.clearFocus()
+                }
+            }
+        }
+        var isLight = false
+        mBinding.btnLightDarkIconInsets.setOnClickListener {
+            windowInsetsController?.let { controller ->
+                val isLightStatusBar = controller.isAppearanceLightStatusBars
+                val isLightNavigationBar = controller.isAppearanceLightStatusBars
+                Log.d(TAG, "status bar is light $isLightStatusBar")
+                Log.d(TAG, "navigation bar is light $isLightNavigationBar")
+                controller.isAppearanceLightStatusBars = isLight
+                controller.isAppearanceLightNavigationBars = isLight
+                isLight = isLight.not()
+            }
+        }
+        mBinding.btnEdgeToEdge.setOnCheckedChangeListener { buttonView, edgeToEdge ->
+            if (edgeToEdge) {
+                WindowCompat.setDecorFitsSystemWindows(window, false)
+                window.statusBarColor = Color.TRANSPARENT
+                window.navigationBarColor = Color.TRANSPARENT
+                mBinding.tvHint.gravity = Gravity.BOTTOM // 设置 gravity 的目的在于可以区分展示出没有适配 Navigation inset 的效果，需注释掉 ViewCompat.setOnApplyWindowInsetsListener(mBinding.tvHint)
+                ViewCompat.setOnApplyWindowInsetsListener(mBinding.btnToSetting) { v, insets ->
+                    val statusInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+                    Log.d(TAG, "statusInsets area ${statusInsets.top}")
+                    v.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                        topMargin = statusInsets.top
+                    }
+                    insets
+                }
+                ViewCompat.setOnApplyWindowInsetsListener(mBinding.tvHint) { v, insets ->
+                    val navigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+                    Log.d(TAG, "navigationInsets area ${navigationBarInsets.bottom}")
+                    v.updatePadding(bottom = navigationBarInsets.bottom)
+                    insets
+                }
+            } else {
+                mBinding.btnToSetting.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    topMargin = 0
+                }
+                mBinding.tvHint.updatePadding(bottom = 0)
+                mBinding.tvHint.gravity = Gravity.CENTER
+                WindowCompat.setDecorFitsSystemWindows(window, true)
+                window.statusBarColor = normalStatusBgColor
+                window.navigationBarColor = normalNavigatorBgColor
+                ViewCompat.setOnApplyWindowInsetsListener(mBinding.btnToSetting, null)
+                ViewCompat.setOnApplyWindowInsetsListener(mBinding.tvHint, null)
             }
         }
     }
